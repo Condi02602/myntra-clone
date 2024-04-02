@@ -1,28 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './routes/App/App';
-import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Bag from './routes/Bag/Bag'
-import Home from './routes/Home/Home';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./routes/App/App";
+import reportWebVitals from "./reportWebVitals";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Bag from "./routes/Bag/Bag";
+import Home from "./routes/Home/Home";
+import { Provider } from "react-redux";
+import myntraStore from "./store/Index";
 
 const router = createBrowserRouter([
-  {path: "/",
-   element: <App/>,
+  {
+    path: "/",
+    element: <App />,
     children: [
-      {path: "/", element: <Home />},
-      {path: "/Bag", element: <Bag/>},
-      {}
-    ]
-  }
-])
+      { path: "/", element: <Home /> },
+      { path: "/Bag", element: <Bag /> },
+      {},
+    ],
+  },
+]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={myntraStore}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 
